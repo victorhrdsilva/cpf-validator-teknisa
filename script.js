@@ -2,16 +2,42 @@ $(document).ready(function(){
     $('#cpf').inputmask('999.999.999-99');
 });
 
+let page = document.querySelector(".page")
+
+function loadPage(){
+    page.innerHTML = `
+    
+<div class="model">
+    <div class="logo">
+        <img alt="cpf logo image" src="https://protestodetitulos.org.br/arquivos/imagens/noticias/1157-m.png" />
+    </div>
+    <div class="info">
+        <div class = "header">
+            <h3>Validador de CPF</h3> 
+        </div> 
+        <div class = "field">
+            <input type="text" id="cpf" placeholder="Insira o seu CPF" maxlength="14" >
+            <button id="btValidate" onclick="validateCPF()">Validar</button> 
+        </div>
+        <div class = "footer">                                                                                  
+            <div id="result"></div>
+        </div>
+    </div>
+</div>  `
+}
+
+loadPage()
 
 function validateCPF(){
    const formattedCpf = document.getElementById('cpf').value;
     const cpf = cleanFormat(formattedCpf);
     if(cpf.length !== 11){
-        showResult('CPF deve conter 11 digitos.', 'red');
+        showResult('CPF deve conter 11 dígitos.', 'red');
+        
         return;
     }
     if (checkRepeatedDigits(cpf)){
-        showResult('CPF não pode conter repetição do mesmo digito.', 'red');
+        showResult('CPF não pode conter repetição do mesmo dígito.', 'red');
         return;
     }
     const firtNumber =  calculateDigitVerifier(cpf, 1);
@@ -28,20 +54,20 @@ function validateCPF(){
 
 }
 
-function calculateDigitVerifier(cpf, posicao){
-    const sequencia = cpf.slice(0, 8 + posicao).split('');
+function calculateDigitVerifier(cpf, position){
+    const sequence = cpf.slice(0, 8 + position).split('');
 
-    let soma = 0;
-    let multiplicador = 9 + posicao;
+    let sum = 0;
+    let multiplier = 9 + position;
 
-    for (const numero of sequencia){
-        soma += multiplicador * Number(numero);
-        multiplicador--;
+    for (const num of sequence){
+        sum += multiplier * Number(num);
+        multiplier--;
     }
-    const restoDivisao = (soma * 10) % 11;
-    const digito = cpf.slice(8+posicao, 9+ posicao);
+    const divisionRest = (sum * 10) % 11;
+    const digit = cpf.slice(8+position, 9+ position);
 
-    return restoDivisao == digito;
+    return divisionRest == digit;
 }
 
 function cleanFormat(cpf){
@@ -51,10 +77,24 @@ function cleanFormat(cpf){
     return cpf;
 }
 
-function showResult(texto, cor){
-    const span =  document.getElementById('result');
-    span.innerHTML = texto;
-    span.style.color = cor;
+function showResult(text, color){
+    const div =  document.getElementById('result');
+    div.innerHTML = ""
+    if(color === "red"){
+        div.style.background = "rgb(230,133,133)"
+        div.style.background = "linear-gradient(137deg, rgba(230,133,133,1) 4%, rgba(233,56,92,1) 69%)"
+    }
+    if(color === "green"){
+        div.style.background = "rgb(167,227,162)"
+        div.style.background = "linear-gradient(137deg, rgba(167,227,162,1) 4%, rgba(7,156,31,1) 65%)"
+    }
+     div.innerHTML = `
+        <div class="toast">
+            ${text}
+        </div>
+    ` 
+
+    //setTimeout(()=> div.innerHTML="", 2000)
 }
 
 function checkRepeatedDigits(cpf){
