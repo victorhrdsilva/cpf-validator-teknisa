@@ -28,6 +28,13 @@ function loadPage(){
 
 loadPage()
 
+document.getElementById("cpf")
+    .addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+        validateCPF()
+    }
+});
+
 function validateCPF(){
    const formattedCpf = document.getElementById('cpf').value;
     const cpf = cleanFormat(formattedCpf);
@@ -37,7 +44,7 @@ function validateCPF(){
         return;
     }
     if (checkRepeatedDigits(cpf)){
-        showResult('CPF não pode conter repetição do mesmo dígito.', 'red');
+        showResult('CPF não pode conter apenas repetições do mesmo dígito.', 'red');
         return;
     }
     const firtNumber =  calculateDigitVerifier(cpf, 1);
