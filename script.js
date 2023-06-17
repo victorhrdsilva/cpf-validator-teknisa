@@ -94,7 +94,7 @@ function showResult(text, color){
         </div>
     ` 
 
-    //setTimeout(()=> div.innerHTML="", 2000)
+    setTimeout(()=> div.innerHTML="", 2000)
 }
 
 function checkRepeatedDigits(cpf){

@@ -47,6 +47,16 @@ body{
     background-color: gray;
     color: #ffffff;
     margin-top: 30px;
+    cursor: pointer;
+}
+
+.field button:hover {
+    filter: brightness(1.2);
+    transition: all 0.1s ease-in;
+}
+.field button:active {
+    transform: translateY(4px);
+    transition: all 0.2s ease-in;
 }
 
 .footer{
@@ -87,10 +97,25 @@ body{
 .toast {
     padding: 15px;
     color: #ffffff;
-    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
-    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.22), 0 10px 36px -4px rgba(77, 96, 232, 0.5);
 }
 
 #result{
     border-radius: 5px;
+}
+
+@media (max-width: 628px) {
+.logo{
+    display: none;
+}
+
+.model{
+    width: 90vw;
+
+}
+
+.info{
+    width: 100%;
+}
+
 }
