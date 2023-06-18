@@ -18,14 +18,11 @@ function loadPage(){
         <div class = "field">
             <input type="text" id="cpf" placeholder="Insira o seu CPF" maxlength="14" >
             <button id="btValidate" onclick="validateCPF()">Validar</button> 
-        </div>
-        <div class = "footer">                                                                                  
-            <div id="result"></div>
-        </div>
+        </div>                                                                              
+        <div id="result"></div>
     </div>
 </div>  `
 }
-
 loadPage()
 
 document.getElementById("cpf")
@@ -100,8 +97,9 @@ function showResult(text, color){
             ${text}
         </div>
     ` 
-
-    setTimeout(()=> div.innerHTML="", 2000)
+    
+    setTimeout(()=> div.classList.add("fade"), 2000)
+    setTimeout(()=> {div.classList.remove("fade"); div.innerHTML=""}, 3000)
 }
 
 function checkRepeatedDigits(cpf){
