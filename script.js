@@ -69,6 +69,7 @@ function calculateDigitVerifier(cpf, position){
         multiplier--;
     }
     const divisionRest = (sum * 10) % 11;
+    if ((divisionRest == 10) || (divisionRest == 11))  divisionRest = 0;
     const digit = cpf.slice(8+position, 9+ position);
 
     return divisionRest == digit;
