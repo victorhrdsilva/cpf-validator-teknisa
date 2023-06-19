@@ -2,29 +2,6 @@ $(document).ready(function(){
     $('#cpf').inputmask('999.999.999-99');
 });
 
-let page = document.querySelector(".page")
-
-function loadPage(){
-    page.innerHTML = `
-    
-<div class="model">
-    <div class="logo">
-        <img alt="cpf logo image" src="https://protestodetitulos.org.br/arquivos/imagens/noticias/1157-m.png" />
-    </div>
-    <div class="info">
-        <div class = "header">
-            <h3>Validador de CPF</h3> 
-        </div> 
-        <div class = "field">
-            <input type="text" id="cpf" placeholder="Insira o seu CPF" maxlength="14" >
-            <button id="btValidate" onclick="validateCPF()">Validar</button> 
-        </div>                                                                              
-        <div id="result"></div>
-    </div>
-</div>  `
-}
-loadPage()
-
 document.getElementById("cpf")
     .addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
@@ -68,16 +45,14 @@ function calculateDigitVerifier(cpf, position){
         sum += multiplier * Number(num);
         multiplier--;
     }
-    const divisionRest = (sum * 10) % 11;
-    if ((divisionRest == 10) || (divisionRest == 11))  divisionRest = 0;
-    const digit = cpf.slice(8+position, 9+ position);
-
-    return divisionRest == digit;
+    let divisionRest = (sum * 10) % 11;
+    if ((divisionRest === 10) || (divisionRest === 11))  divisionRest = 0;
+    const digit = parseInt(cpf.slice(8+position, 9+ position));
+    return divisionRest === digit;
 }
 
 function cleanFormat(cpf){
-    //cpf = cpf.replace('.', '');  //pegar onde tiver ponto e mudar para vazio
-    cpf = cpf.replace(/\D/g, '');  //remove qualquer coisa diferente de caracteres por vazio
+    cpf = cpf.replace(/\D/g, ''); 
 
     return cpf;
 }
