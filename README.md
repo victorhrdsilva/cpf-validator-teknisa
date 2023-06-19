@@ -1,7 +1,7 @@
 # Validador de CPF
 
-Este é um projeto de validação de CPF desenvolvido utilizando HTML, CSS e JavaScript, criado como parte do processo seletivo para estágio na empresa Teknisa.
-Confira o resulvado clicando <a href="https://victorhrdsilva.github.io/cpf-validator-teknisa/">AQUI</a>
+Este é um projeto de validação de CPF desenvolvido utilizando HTML, CSS e JavaScript, criado como parte do processo seletivo para estágio na empresa Teknisa. <br>
+Confira o resultado clicando <a href="https://victorhrdsilva.github.io/cpf-validator-teknisa/">AQUI</a>
 
 ## Descrição
 
